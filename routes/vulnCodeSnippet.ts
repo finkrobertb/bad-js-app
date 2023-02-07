@@ -30,7 +30,7 @@ export const fileSniff = async (paths: readonly string[], match: RegExp): Promis
   for (const currPath of paths) {
     if (fs.lstatSync(currPath).isDirectory()) {
       const files = fs.readdirSync(currPath)
-      // const moreMatches = await fileSniff(files.map(file => path.resolve(currPath, file)), match)
+      const moreMatches = await fileSniff(files.map(file => path.resolve(currPath, file)), match)
       matches.push(...moreMatches)
     } else {
       const data = fs.readFileSync(currPath)
